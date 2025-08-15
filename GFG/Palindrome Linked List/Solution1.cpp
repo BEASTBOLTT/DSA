@@ -10,50 +10,25 @@ struct Node {
 */
 
 class Solution {
-    private:
-        Node* middle(Node* head){
-            Node* slow = head;
-            Node* fast = head->next;
-            while(fast != NULL && fast->next != NULL){
-                slow = slow->next;
-                fast = fast->next->next;
-            }
-            return slow;
-        }
-        Node* reverse(Node* head){
-            Node* cur = head;
-            Node* prev = NULL;
-            Node* next = NULL;
-            while(cur !=NULL){
-                next = cur->next;
-                cur->next = prev;
-                prev = cur;
-                cur = next;
-            }
-            return prev;
-        }
   public:
     bool isPalindrome(Node *head) {
-        if(head->next == NULL){
-            return true;
+        Node *temp = head;
+        vector<int> check;
+        while(temp != NULL){
+            check.push_back(temp->data);
+            temp = temp->next;
         }
-        Node* mid = middle(head);
-        mid->next = reverse(mid->next);
-        
-        Node* h1 = head;
-        Node* h2 = mid->next;
-        
-        while(h2 != NULL){
-            if(h1->data == h2->data){
-                h1 = h1->next;
-                h2 = h2->next;
+        int i = 0;
+        int j = check.size()-1;
+        while (i<j){
+            if(check[i] == check[j]){
+                i++;
+                j--;
             }
             else{
                 return false;
             }
         }
-        mid->next = reverse(mid->next);
-        
         return true;
     }
 };
