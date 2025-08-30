@@ -25,8 +25,7 @@ public:
 */
 
 Node *findMiddle(Node *head) {
-    if(head == NULL){
-    }
+    
     if (head->next == NULL){
         return head;
     }
@@ -37,7 +36,7 @@ Node *findMiddle(Node *head) {
         temp = temp->next;
     }
     int mid;
-    if (len/2 == 0){
+    if (len%2 == 0){
         mid = len/2 +1;
     }
     else{
